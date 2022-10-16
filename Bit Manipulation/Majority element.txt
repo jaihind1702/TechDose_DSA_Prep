@@ -1,0 +1,63 @@
+sol1. using hashmap
+
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        
+         unordered_map<int,int>ump;
+        for(int i=0;i<nums.size();i++)
+        {
+            ump[nums[i]]++;
+        }
+
+       for (auto& it : ump) {
+        if(it.second > (nums.size())/2 )
+            return it.first;
+    }
+        
+        return -1;
+
+            
+    }
+};
+
+
+sol2 , by sort the array
+
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        int n = nums.size();
+         sort(nums.begin(),nums.end());
+         return (nums[(n-1) / 2]);
+
+            
+    }
+};
+
+
+sol3 .using bit manuplulation
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+         int number=0;
+        int s = nums.size();
+        
+        for(int i=0;i<32;i++){
+            int cnt=0;
+
+            for(int j=0;j<s;j++){
+                if(nums[j]&(1<<i))cnt++;
+            }
+         
+            if(cnt>(s/2))
+                number = number | 1<<i;
+            
+        }
+        return number;
+            
+    }
+};

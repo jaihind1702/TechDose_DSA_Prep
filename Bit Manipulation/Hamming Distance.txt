@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int hammingDistance(int left, int right) {
+    
+    int r = left ^ right; //xor of both number to get total set bits ex: 1 (0001) ^ 4(0100) = 5(0101)
+    int count =0 ;
+
+    while(r)
+    {
+        count += r%2;  
+        r>>=1; 
+    }
+    
+    return count;
+    }
+};

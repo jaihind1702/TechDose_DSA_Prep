@@ -1,0 +1,36 @@
+class Solution {
+public:
+    vector<int> decode(vector<int>& encoded) {
+        int total_xor = 0;
+        int n = encoded.size()+1;
+        for(int i = 1;i<=n;i++) //took a xor of 1 to n
+        {
+            total_xor ^=i;
+        }
+
+        int x = 0;
+        for(int i=1;i<encoded.size();i+=2) //odd places xor
+        {
+            x ^= encoded[i];
+        }
+
+        int f = x^total_xor;
+
+        vector<int>ans(n);
+        ans[0] = f;
+
+        for(int i=1;i<n;i++)
+        {
+            ans[i] = ans[i-1] ^ encoded[i-1];
+        }
+
+return ans;
+    }
+};
+
+
+
+/*
+4 ^ 7 = 3
+3 ^ 7 = 4
+*/

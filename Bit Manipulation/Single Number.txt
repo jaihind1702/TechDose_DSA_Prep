@@ -1,0 +1,56 @@
+
+sol.1 : by using count frequency
+
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        unordered_map<int,int>ump;
+        for(int i=0;i<nums.size();i++)
+        {
+            ump[nums[i]]++;
+        }
+
+       for (auto& it : ump) {
+        if(it.second==1)
+            return it.first;
+    }
+        
+        return -1;
+    }
+};
+
+
+sol2 : by using adjacent 
+
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+    sort(nums.begin(),nums.end()); 
+    for(int i=1; i<nums.size();i+=2){
+            if(nums[i] != nums[i-1])
+                return nums[i-1];
+            
+        }
+        return nums[nums.size()-1];
+    }
+};
+
+
+
+sol3 : using xor 
+
+example : 2 ^ 2 = 0
+	0 ^ 4 = 4	
+
+
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+    
+        int res = 0;
+        for(auto& no : nums)
+            res^=no;
+
+        return res;    
+    }
+};
